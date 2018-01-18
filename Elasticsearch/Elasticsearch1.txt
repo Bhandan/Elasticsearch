@@ -1,0 +1,99 @@
+POST /product/default
+{
+  "name": "Processing Event with Bhandan",
+  "instructor":{
+    "firstName":"Bhandan",
+    "lastName":"Kumar"
+  }
+}
+
+PUT /product/default/1
+{
+  "name": "Processing Event with Hahaha",
+  "instructor":{
+    "firstName":"Bhandan",
+    "lastName":"Kumar"
+  }
+}
+
+GET /product/default/1
+
+POST /product/default/2
+{
+  "name": "Processing Event with Example",
+  "instructor":{
+    "firstName":"Bhandan",
+    "lastName":"Kumar"
+  },
+  "price":19037
+}
+
+GET /product/default/2
+
+POST /product/default/1/_update
+{
+  "doc":{"price":95, "tags": ["ElasticSearch"]}
+}
+
+GET /product/default/1
+
+POST /product/default/1/_update
+{
+  "script":"ctx._source.price += 10"
+}
+GET /product/default/1
+
+DELETE /product/default/1
+
+POST /product/default/1/_update
+{
+  "script":"ctx._source.price += 5",
+  "upsert":{
+    "price":100
+  }
+
+}
+GET /product/default/1
+
+DELETE /product/default/1
+
+POST /product/default
+{
+  "name":"The Art of Scalability",
+  "category":"book"
+}
+
+POST /product/default
+{
+  "name":"The Science of Scalability",
+  "category":"Course"
+}
+
+POST /product/_delete_by_query
+{
+  "query":{
+    "match":{
+      "category":"book"
+    }
+  }
+}
+
+DELETE /product
+
+POST /product/default/_bulk
+{"index":{"_id":"100"}}
+{"price": 1000 }
+{"index":{"_id":"102"}}
+{"price": 1001 }
+
+POST /product/default/_bulk
+{"update":{"_id":"100"}}
+{"doc":{"price": 10000 }}
+{ "delete" :{"_id":"102"}}
+
+GET  product/default/100
+GET /_cat/health?v
+GET  _cat/nodes
+GET  _cat/indices?v
+GET /_cat/allocation?v
+GET /_cat/shards
