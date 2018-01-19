@@ -1,0 +1,99 @@
+GET /product/default/_mapping
+
+PUT /product/default/_mapping
+{
+  "properties": {
+    "discount":{
+      "type": "double"
+    }
+  }
+}
+
+GET /product/default/_mapping
+
+DELETE /product
+
+PUT /product
+{
+  "mapping":{
+    "default":{
+      "dynamic":false,
+      "properties":{
+       "in_stock":{
+         "type": "integer"
+      },
+      
+      "is_active":{
+        "type":"integer"
+      },
+      "price":{
+        "type":"integer"
+      },
+      "sold":{
+        "type":"long"
+      }
+      
+      }
+    }
+  }
+}
+
+
+
+PUT /product/default/_mapping
+{
+  "properties": {
+    "description":{
+      "type": "text"
+    },
+    "name":{
+      "type": "text",
+      "fields": {
+        "keyword":{
+          "type": "keyword"
+        }
+      }
+    },
+    "tags":{
+      "type": "text",
+      "fields": {
+        "keyword":{
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
+
+GET /product/default/_mapping
+
+PUT /product/default/_mapping
+{
+  "properties": {
+    "created":{
+      "type": "date",
+      "format": "yyyy/MM/dd HH:mm:ss"
+    }
+  }
+}
+
+POST /product/default/2000
+{
+  "description":{
+    "discount":{
+      "type":"integer"
+    }
+  }
+}
+
+GET  /product/default/_search
+{
+  "query": {
+    "term": {
+      "discount": 20
+    
+    }
+  }
+}
+
+POST  product/_update_by_query?conflicts=proceed
