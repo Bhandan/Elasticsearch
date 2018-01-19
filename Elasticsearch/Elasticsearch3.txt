@@ -1,0 +1,23 @@
+POST _analyze
+{
+  "tokenizer": "standard",
+  "text": "Hello I'm fine how are you-too doing!"
+}
+
+POST _analyze
+{
+
+  "filter": ["lowercase"],
+
+  "text": "Hello I'm fine how are you-too doing!"
+
+}
+
+POST _analyze
+{
+
+  "analyzer": "standard",
+
+  "text": "Hello I'm fine how are you-too doing!"
+
+}
